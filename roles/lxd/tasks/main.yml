@@ -1,0 +1,6 @@
+---
+- name: Update repositories cache and install "lxd" package
+  apt:
+    name: lxd
+    update_cache: yes
+  become: true
