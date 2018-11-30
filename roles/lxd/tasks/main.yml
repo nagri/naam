@@ -1,21 +1,8 @@
 ---
-- name: Update repositories cache and install "lxd" package
-  apt:
-    name: lxd
-    update_cache: yes
-  become: true
+- include: lxd_for_ubuntu.yml
   when: ansible_distribution == "Ubuntu"
 
-
-- name: ensure a list of packages installed
-  yum:
-    name: "{{ packages }}"
-  vars:
-    packages:
-    - epel-release
-    - yum-plugin-copr
-    - snapd
-  become: true
+- include: lxd_for_centos.yml
   when: 
     - ansible_distribution == "CentOS"
     - ansible_distribution_major_version == "7"

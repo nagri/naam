@@ -1,0 +1,16 @@
+---
+- name: Update repositories cache and install "lxd" package
+  apt:
+    name: lxd
+    update_cache: yes
+  become: true
+  when: ansible_distribution == "Ubuntu"
+
+- name: Transfer the script
+  copy:
+    src: lxd_preeseed.sh
+    dest: /tmp
+    mode: 0777
+
+- name: Execute the script
+  command: sh /tmp/lxd_preeseed.sh

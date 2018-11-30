@@ -1,0 +1,13 @@
+---
+- name: Ensure list of packages are installed.
+  yum:
+    name: "{{ packages }}"
+  vars:
+    packages:
+    - epel-release
+    - yum-plugin-copr
+    - snapd
+  become: true
+  when: 
+    - ansible_distribution == "CentOS"
+    - ansible_distribution_major_version == "7"
